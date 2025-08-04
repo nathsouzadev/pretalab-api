@@ -1,43 +1,38 @@
-FROM node:20-alpine3.18 AS development
+# Stage 1: Build the TypeScript application
+FROM node:20-slim AS build
 
-RUN apk add --no-cache libc6-compat
+# Set the working directory inside the container
 WORKDIR /app
 
-COPY --chown=node:node package*.json ./
-COPY --chown=node:node src ./src
+# Copy package.json and package-lock.json (or yarn.lock) first to leverage Docker's cache
+COPY package*.json ./
 
-RUN npm ci
+# Install dependencies
+RUN npm install
 
-COPY --chown=node:node . .
+# Copy the rest of the application code
+COPY . .
 
-USER node
-
-FROM node:20-alpine3.18 AS build
-
-WORKDIR /app
-
-COPY --chown=node:node package*.json ./
-COPY --chown=node:node src ./src
-
-COPY --chown=node:node --from=development /app/node_modules ./node_modules
-
-COPY --chown=node:node . .
-
+# Build the TypeScript application
+# Ensure your package.json has a "build" script that compiles TypeScript
 RUN npm run build
 
-ENV NODE_ENV production
+# Stage 2: Create the final, smaller runtime image
+FROM node:20-slim
 
-RUN npm ci --only=production && npm cache clean --force
+# Set the working directory inside the container
+WORKDIR /app
 
-USER node
+# Copy only the necessary files from the build stage
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package*.json ./
+COPY --from=build /app/dist ./dist
 
-FROM node:20-alpine3.18 AS production
-
-COPY --chown=node:node --from=build /app/node_modules ./node_modules
-COPY --chown=node:node --from=build /app/dist ./dist
-
-EXPOSE 3000
-
+# Expose the port your application listens on
+# Cloud Run expects your application to listen on the port specified by the PORT environment variable
 ENV PORT 3000
+EXPOSE ${PORT}
 
-CMD ["node", "start"]
+# Define the command to run your application
+# Assuming your built JavaScript entry point is in dist/index.js (adjust as needed)
+CMD ["node", "dist/index.js"]
