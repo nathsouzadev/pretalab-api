@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build" : "tsc",
-    "start" : "node dist/index.js",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn src/index.ts",
     "test": "jest --config jest.config.js --runInBand",
+    "jest:unit": "jest ./tests/unit --config jest.config.js --runInBand",
+    "test:integration": "jest ./tests/integration --config jest.config.js --runInBand",
     "test:coverage": "jest --coverage"
   },
   "keywords": [],
@@ -16,16 +18,16 @@
   "dependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.3",
-    "@types/jest": "^30.0.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.0.10",
-    "@types/supertest": "^6.0.3",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/supertest": "^6.0.3",
     "cross-env": "^7.0.3",
     "jest": "^30.0.4",
     "supertest": "^7.1.1",
