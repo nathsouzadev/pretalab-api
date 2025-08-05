@@ -9,7 +9,7 @@
     "dev": "ts-node-dev --respawn src/index.ts",
     "test": "jest --config jest.config.js --runInBand",
     "test:unit": "jest ./tests/unit --config jest.config.js --runInBand",
-    "test:integration": "jest ./tests/integration --config jest.config.js --runInBand",
+    "test:integration": "jest ./tests/integration --config jest.config.js --runInBand --detectOpenHandles --forceExit",
     "test:coverage": "jest --coverage"
   },
   "keywords": [],
