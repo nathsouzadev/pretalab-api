@@ -1,6 +1,6 @@
 name: deploy-test
 on:
-  push: 
+  push:
     branches: [main]
 
 jobs:
