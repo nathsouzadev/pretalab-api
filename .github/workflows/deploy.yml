@@ -5,11 +5,23 @@ on:
 
 jobs:
   test:
-    name: Run Tests
     runs-on: ubuntu-latest
-  steps:
-  - name: Checkout Code
-    uses: actions/checkout@v4
 
-  - name: Run Tests
-    run: npm test
+  strategy:
+    matrix:
+      node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: npm test unit
+        run: npm run test:unit
+      - name: npm test integration
+        run: npm run test:integration
+
