@@ -1,4 +1,12 @@
-test:
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
     runs-on: ubuntu-latest
 
   strategy:
@@ -12,6 +20,7 @@ test:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+
       - name: Install dependencies
         run: npm install
       - name: Run unit tests
