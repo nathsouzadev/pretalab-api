@@ -4,7 +4,7 @@ import { transactions } from "./data";
 const app = express();
 
 app.get("/", (_req, res) => {
-  res.json({ message: "Transactions API" });
+  res.json({ message: "Transactions API v2.1" });
 });
 
 app.get("/transactions", (_req, res) => {
