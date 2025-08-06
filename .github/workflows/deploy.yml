@@ -26,14 +26,14 @@ jobs:
     - name: npm test integration
       run: npm run test:integration
 
-    deploy:
+  deploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
 
     needs:
-      - test
+    - test
 
     steps:
-      - name: Deploy
-        run: |
-          echo "Deploying to GCP"
+    - name: Deploy
+      run: |
+        echo "Deploying to GCP"
