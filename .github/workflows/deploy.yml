@@ -1,8 +1,11 @@
 name: deploy-test
 on:
   push:
-    branches: [main]
-
+    branches: 
+      - main
+  pull_request:
+    branches:
+      - main
 jobs:
   test:
     runs-on: ubuntu-latest
