@@ -1,4 +1,4 @@
-interface Transaction {
+export interface Transaction {
   id: string;
   date: string;
   description: string;
@@ -89,3 +89,5 @@ export const transactions: Transaction[] = [
     category: "Lazer",
   },
 ];
+
+export default Transaction
