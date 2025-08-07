@@ -20,6 +20,10 @@ app.get("/transactions", (req, res) => {
   transactionController.getAllTransactions(req, res) 
 });
 
+app.post("/transaction", (req, res) => { 
+  transactionController.createTransactions(req, res) 
+});
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });

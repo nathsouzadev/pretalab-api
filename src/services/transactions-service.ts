@@ -15,4 +15,9 @@ export class TransactionService {
   public async getAllTransactions(): Promise<Transaction[]> {
     return this.transactions;
   }
+
+  public async createTransaction(data: Transaction): Promise<Transaction> {
+    this.transactions.push(data);
+    
+    return data;}
 }

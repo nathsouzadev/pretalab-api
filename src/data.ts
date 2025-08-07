@@ -89,5 +89,3 @@ export const transactions: Transaction[] = [
     category: "Lazer",
   },
 ];
-
-export default Transaction
