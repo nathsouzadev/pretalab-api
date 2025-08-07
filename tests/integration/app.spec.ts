@@ -27,5 +27,23 @@ describe("Transactions API", () => {
     expect(response.status).toBe(404);
     expect(response.body).toEqual({ message: "Transaction not found" });
   });
+
+    it("should create a new transaction with status 201", async () => {
+    const newTransaction = {
+      date: "2024-09-01T08:00:00Z",
+      description: "Serviço de streaming",
+      amount: 45.0,
+      type: "expense",
+      category: "Entretenimento",
+    };
+
+    const response = await request(app)
+      .post("/transactions")
+      .send(newTransaction);
+
+    expect(response.status).toBe(201);
+    expect(response.body).toMatchObject(newTransaction);
+    expect(response.body).toHaveProperty("id");
+  });
 });
 

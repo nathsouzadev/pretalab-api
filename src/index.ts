@@ -1,4 +1,5 @@
 import express from "express";
+import crypto from "crypto";
 import { transactions } from "./data";
 
 const app = express();
@@ -24,6 +25,21 @@ app.get("/transactions/:id", (req, res) => {
   }
   return res.status(404).json({ message: "Transaction not found" });
 });
+
+// nova rota para criar uma transação
+app.post("/transactions", (req, res) => {
+  const newTransaction = req.body;
+
+  const id = crypto.randomUUID();
+  const transactionWithId = { ...newTransaction, id };
+
+  // Add trasação
+  transactions.push(transactionWithId);
+
+  // (Created)
+  res.status(201).json(transactionWithId);
+});
+
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
