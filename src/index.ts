@@ -1,15 +1,22 @@
 import express from "express";
 import { transactions } from "./data";
+import { GetTransactionByIdController } from "../src/controllers/GetTransactionByIdController";
 
 const app = express();
+app.use(express.json());
 
-app.get("/", (_req, res) => {
+
+app.get("/", (req, res) => {
   res.json({ message: "Transactions API v1" });
 });
 
-app.get("/transactions", (_req, res) => {
+app.get("/transactions", (req, res) => {
   res.json({ transactions });
 });
+
+app.get("/transactions/:id", (req, res ) => 
+  GetTransactionByIdController(req, res));
+
 
 
 
