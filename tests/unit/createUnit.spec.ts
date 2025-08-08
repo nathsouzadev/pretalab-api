@@ -12,7 +12,7 @@ describe("TransactionService", () => {
             description: "Nova Compra",
             amount: 50,
             type: "expense",
-            category: "Alimentação",
+            category: "Alimentaçã",
         };
 
         const transactionCreated = await transactionService.createTransaction(newTransaction);
