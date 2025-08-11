@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../../src/index";
+import app from "../../src/app";
 
 describe("Create transaction", () => {
     it("should create a new transaction", async () => {
