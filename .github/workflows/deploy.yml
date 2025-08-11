@@ -9,27 +9,51 @@ on:
       - main
 
 jobs:
-  test:
+  unit-tests:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [20.x]
-
+    
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run unit tests
+      run: npm test --coverage
+      
+    - name: Upload coverage
+      uses: codecov/codecov-action@v3
 
-      - name: Install dependencies
-        run: npm install
-      - name: Run unit tests
-        run: npm run test:unit
-      - name: Run integration tests
-        run: npm run test:integration
+  integration-tests:
+    runs-on: ubuntu-latest
+    needs: []
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Start test server
+      run: npm run test-server &
+      
+    - name: Run integration tests
+      run: npm run integration-tests
+      
+    - name: Stop test server
+      run: pkill -f test-server
 
   deploy:
     runs-on: ubuntu-latest
