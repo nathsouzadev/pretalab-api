@@ -1,9 +1,13 @@
-import app from "../../src/index";
-import request from "supertest";
+import { getTransactionsById } from "../../src/services/transactionsService";
 
-describe("GET /transactions", () => {
-    it("deve retornar a lista de transações", async () => {
-        const response = await request(app).get("/transactions");
-        expect(response.statusCode).toBe(200);
+describe("Get Transactions by ID", () => {
+    it("should return a transaction if it exists", () => {
+        const transaction = getTransactionsById("1");
+        expect(transaction).toBeDefined();
+    });
+
+    it("should return undefined if the transaction does not exist", () => {
+        const transaction = getTransactionsById("non-existent-id");
+        expect(transaction).toBeUndefined();
     });
 });
