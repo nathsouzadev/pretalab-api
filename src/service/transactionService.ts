@@ -7,11 +7,11 @@ export default {
         const newTransaction = transactionFactory.create(transaction);
         transactions.push(newTransaction);
         return newTransaction;
-},
+        },
 
         getTransactionsById: (id: string): Transaction | undefined => {
         return transactions.find((t) => t.id === id);
-},
+        },
 
 
 
