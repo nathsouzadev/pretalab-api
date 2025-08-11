@@ -1,4 +1,4 @@
-import  transactionService  from "../service/transactionService";
+import transactionService from "../service/transactionService";
 import transactionFactory from "../factory/transactionFactory";
 import { Request, Response } from "express";
 
