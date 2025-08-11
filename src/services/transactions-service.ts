@@ -1,23 +1,22 @@
-import { Transaction, transactions } from "../data";
+import { ITransaction } from "../database/mongooseTransactionModel";
+import { TransactionRepository } from "../repositories/transaction-repository";
 
 export class TransactionService {
-  private transactions: Transaction[];
+  private transactionRepository: TransactionRepository;
 
-  constructor() {
-    this.transactions = transactions;
+  constructor(transactionRepository: TransactionRepository) {
+    this.transactionRepository = transactionRepository;
   }
 
-  public async getTransactionById(id: string): Promise<Transaction | undefined> {
-    const transaction = this.transactions.find((t) => t.id === id);
-    return transaction;
+  public async getTransactionById(id: string): Promise<ITransaction | null> {
+    return await this.transactionRepository.getTransactionById(id);
   }
 
-  public async getAllTransactions(): Promise<Transaction[]> {
-    return this.transactions;
+  public async getAllTransactions(): Promise<ITransaction[]> {
+    return await this.transactionRepository.getAllTransactions();
   }
 
-  public async createTransaction(data: Transaction): Promise<Transaction> {
-    this.transactions.push(data);
-    
-    return data;}
+  public async createTransaction(data: Omit<ITransaction, 'id'>): Promise<ITransaction> {
+    return await this.transactionRepository.createTransaction(data);
+  }
 }
