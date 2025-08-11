@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/", (_req, res) => {
-  res.json({ message: "Transactions API v2" });
+  res.json({ message: "Transactions API v2.4" });
 });
 
 
