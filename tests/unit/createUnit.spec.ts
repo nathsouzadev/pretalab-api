@@ -1,26 +1,33 @@
 import { TransactionService } from "../../src/services/transactions-service";
-import { transactions, Transaction } from "../../src/data";
+import { ITransaction } from "../../src/database/mongooseTransactionModel";
 
 describe("TransactionService", () => {
     it("deve criar e retornar uma nova transação", async () => {
-        const tamanhoInicial = transactions.length;
-        const transactionService = new TransactionService();
-
-        const newTransaction: Transaction = {
-            id: "21",
-            date: "2024-08-07T10:00:00Z",
+        const newTransactionData = {
+            date: new Date("2024-08-07T10:00:00Z"),
             description: "Nova Compra",
             amount: 50,
             type: "expense",
-            category: "Alimentaçã",
+            category: "Alimentação",
         };
 
-        const transactionCreated = await transactionService.createTransaction(newTransaction);
+        const createdTransaction: ITransaction = {
+            ...newTransactionData,
+            _id: "21"
+        } as ITransaction;
 
-        expect(transactions.length).toBe(tamanhoInicial + 1);
-        expect(transactions[transactions.length - 1]).toEqual(newTransaction); 
-        expect(transactionCreated).toEqual(newTransaction);
+        const mockTransactionRepository = {
+            createTransaction: jest.fn().mockResolvedValue(createdTransaction),
+            getAllTransactions: jest.fn(),
+            getTransactionById: jest.fn(),
+        };
 
-        transactions.pop();
+        const transactionService = new TransactionService(mockTransactionRepository as any);
+
+        const result = await transactionService.createTransaction(newTransactionData as any);
+
+        expect(mockTransactionRepository.createTransaction).toHaveBeenCalledTimes(1);
+        expect(mockTransactionRepository.createTransaction).toHaveBeenCalledWith(newTransactionData);
+        expect(result).toEqual(createdTransaction);
     });
 });

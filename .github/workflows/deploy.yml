@@ -43,6 +43,8 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: npm test integration
+        env:
+          MONGO_URL: ${{secrets.MONGO_URL}}
         run: npm run test:integration
 
   deploy:
@@ -56,6 +58,9 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
+    env:
+      MONGO_URL: ${{secrets.MONGO_URL}}
+      PORT: 3000
 
     steps:
       - name: Checkout
@@ -74,6 +79,9 @@ jobs:
           service: ${{ secrets.SERVICE_NAME }}
           region: ${{ secrets.SERVICE_REGION }}
           source: ./
+          env_vars: |
+            MONGO_URL = ${{secrets.MONGO_URL}}
+            PORT=300
 
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
