@@ -6,11 +6,13 @@ export class TransactionRepository {
     }
 
     public async getTransactionById(id: string): Promise<ITransaction | null> {
-        return await TransactionModel.findOne({ id: id });
+        const transaction = await TransactionModel.findById(id).exec();
+        return transaction ? transaction.toObject() : null;
     }
 
     public async createTransaction(data: Omit<ITransaction, 'id'>): Promise<ITransaction> {
         const newTransaction = new TransactionModel(data);
-        return await newTransaction.save();
+        await newTransaction.save();
+        return newTransaction.toObject();
     }
 }
