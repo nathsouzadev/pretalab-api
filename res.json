@@ -1,0 +1,21 @@
+{
+"usageMetadata": {
+        "promptTokenCount": 7,
+        "candidatesTokenCount": 105,
+        "totalTokenCount": 112,
+        "promptTokensDetails": [
+            {
+                "modality": "TEXT",
+                "tokenCount": 7
+            }
+        ],
+        "candidatesTokensDetails": [
+            {
+                "modality": "TEXT",
+                "tokenCount": 105
+            }
+        ]
+    },
+    "modelVersion": "gemini-2.0-flash",
+    "responseId": "BsKbaInnCvKcnvgPraXxwQ4"
+}

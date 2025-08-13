@@ -3,6 +3,7 @@ import express from "express";
 import { TransactionService } from "./services/transactions-service";
 import { TransactionController } from "./controllers/transactions-controller";
 import { TransactionRepository } from "./repositories/transaction-repository";
+import { aiResponse } from "./controllers/ai";
 import { connectToMongo } from "./database/mongooseConnection";
 
 dotenv.config();
@@ -37,5 +38,7 @@ app.get("/transactions", (req, res) => {
 app.post("/transactions", (req, res) => {
   transactionController.createTransactions(req, res);
 });
+
+
 
 export default app;

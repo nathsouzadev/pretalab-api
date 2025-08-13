@@ -81,7 +81,7 @@ jobs:
           source: ./
           env_vars: |
             MONGO_URL = ${{secrets.MONGO_URL}}
-            PORT=300
+            PORT=3000
 
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}

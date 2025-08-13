@@ -4,7 +4,7 @@ import { ITransaction } from "../../src/database/mongooseTransactionModel";
 describe("TransactionService", () => {
     it("deve criar e retornar uma nova transação", async () => {
         const newTransactionData = {
-            date: new Date("2024-08-07T10:00:00Z"),
+            date: "2024-08-07T10:00:00Z",
             description: "Nova Compra",
             amount: 50,
             type: "expense",
