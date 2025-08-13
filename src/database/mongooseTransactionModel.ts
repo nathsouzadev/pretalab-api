@@ -3,7 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 
 export interface ITransaction extends Document {
   id?: string;
-  date: Date;
+  date: string;
   description: string;
   amount: number;
   type: "income" | "expense";
@@ -11,7 +11,7 @@ export interface ITransaction extends Document {
 }
 
 const TransactionSchema: Schema = new Schema({
-  date: { type: Date, required: true, default: Date.now },
+  date: { type: String, required: true, default: Date.now },
   description: { type: String, required: true },
   amount: { type: Number, required: true },
   type: { type: String, required: true, enum: ["income", "expense"] },
