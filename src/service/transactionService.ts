@@ -1,35 +1,24 @@
 import { Request, Response } from "express";
-import transactionFactory from "../../src/factory/transactionFactory";
-import { Transaction, transactions }  from "../data";
-import mongoose from 'mongoose';
+import {TransactionRepository} from "../repository/transactionRepository";
+import { ITransaction } from "../database/MongooseTransactionModel";
 
-export const createTransactions = async (req:Request, res:Response) =>{ 
-        try {
-        // createTransactions: (transaction: Transaction): Promise<Transaction> => {
-        // const newTransaction = {
-        //         id: new mongoose.Types.ObjectId(),
-        //         date: new Date().toLocaleDateString('pt-BR'),
-        //         description: transaction.description,
-        //         amount: transaction.amount,
-        //         type: transaction.type,
-        //         category: transaction.category
-        // }
-        // const createdTransaction = await newTransaction.save();
+export class TransactionService { 
+    private transactionRepository: TransactionRepository;
 
-        
-        return newTransaction;
-        } 
+    constructor(transactionRepository: TransactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
+
+    public async createTransactions(data: ITransaction): Promise<ITransaction> {
+        return await this.transactionRepository.create(data);
+    };
+
+    public async getTransactionsById(id: string): Promise<ITransaction | null > {
+        return await this.transactionRepository.getById(id);
+    };
+
+
 }
-        // const newTransaction = transactionFactory.create(transaction);
-        // transactions.push(newTransaction);
-        
-
-        // getTransactionsById: (id: string): Transaction | undefined => {
-        // return transactions.find((t) => t.id === id);
-        // },
 
 
 
-
-
-};

@@ -1,7 +1,14 @@
 import express from "express";
 import { transactions } from "./data";
 import { mongoConnect } from '../src/database/MongooseConnection';
-import { CreateTransactionController, GetTransactionByIdController } from "../src/controllers/transactionControllers";
+import { TransactionController } from "../src/controllers/transactionControllers";
+import { TransactionService } from  "../src/service/transactionService";
+import { TransactionRepository } from "../src/repository/transactionRepository";
+// import { aiResponse } from "./controllers/ai";
+
+const transactionRepository = new TransactionRepository();
+const transactionService = new TransactionService(transactionRepository);
+const transactionController = new TransactionController(transactionService);
 
 const app = express();
 app.use(express.json());
@@ -17,10 +24,21 @@ app.get("/transactions", (req, res) => {
 });
 
 app.get("/transactions/:id", (req, res) => 
-  GetTransactionByIdController(req, res));
+transactionController.GetTransactionByIdController(req, res));
 
 app.post("/transactions", (req, res) => 
-  CreateTransactionController(req, res));
+transactionController.CreateTransactionController(req, res));
+
+// app.post("/ai/chat", async (req, res) => {
+//   const { prompt } = req.body;
+
+//   res.json({ prompt });
+// });
+
+// app.post("/ai", async (req, res) => aiResponse(req, res));
+
+// app.post('/chat', async (req, res) =>  );
+
 
 mongoConnect();
 
@@ -28,5 +46,6 @@ mongoConnect();
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
+
 
 export default app;

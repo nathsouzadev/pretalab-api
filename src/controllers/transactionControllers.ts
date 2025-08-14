@@ -1,17 +1,28 @@
-import transactionService from "../service/transactionService";
-import transactionFactory from "../factory/transactionFactory";
+import { TransactionService } from "../service/transactionService";
 import { Request, Response } from "express";
 
-export const CreateTransactionController = (req: Request, res: Response): void => {
-    const { id, date, description, amount, type, category } = req.body;
-    
-    const newTransaction = transactionService.createTransactions({id, date, description, amount, type, category});
+export class TransactionController { 
+    private transactionService: TransactionService;
 
-    res.status(201).json({newTransaction});
+    constructor(transactionService: TransactionService) {
+        this.transactionService = transactionService;
+    }
+
+    public async CreateTransactionController(req: Request, res: Response): Promise<void> {
+
+        const newTransaction = await this.transactionService.createTransactions(req.body);
+    
+        res.status(201).json({newTransaction});
+    };
+
+
+    public async GetTransactionByIdController(req: Request, res: Response): Promise<void> {
+        const {id} = req.params;
+       const transaction = await this.transactionService.getTransactionsById(id);
+       
+       res.status(200).json({transaction});
+    };
+
 };
 
-export const GetTransactionByIdController = (req: Request, res: Response): void => {
-    const transaction = transactionService.getTransactionsById(req.params.id);
-    
-    res.status(200).json({transaction});
-};
+
