@@ -41,14 +41,11 @@ jobs:
 
       - name: Use Node.js
         uses: actions/setup-node@v4
-        # with:
-        # node-version: [22.x]
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
         run: npm install
-
-      - name: Start server
-        run: npm run dev
 
       - name: Run integration tests
         run: npm run test:integration
