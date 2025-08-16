@@ -39,7 +39,7 @@ jobs:
         node-version: [20.x]
 
     env:
-      MONGO_URL: ${{ secrets.MONGO_URL_TESTE}}
+      MONGO_URL: ${{ secrets.MONGO_URL}}
       PORT: ${{ secrets.PORT }}
 
     steps:
@@ -70,7 +70,7 @@ jobs:
       contents: "read"
       id-token: "write"
     env:
-      MONGO_URL: ${{ secrets.MONGO_URL_TESTE}}
+      MONGO_URL: ${{ secrets.MONGO_URL}}
       PORT: ${{ secrets.PORT }}
 
     steps:
