@@ -38,6 +38,9 @@ jobs:
       matrix:
         node-version: [20.x]
 
+    env:
+      MONGO_URL_TESTE: ${{ secrets.MONGO_URL_TESTE}}
+
     steps:
       - name: Checkout code ${{ matrix.node-version }}
         uses: actions/checkout@v4
