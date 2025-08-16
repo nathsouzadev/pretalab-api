@@ -1,7 +1,7 @@
 import request from "supertest";
 import mongoose from 'mongoose';
 import app from "../../src/index";
-import {TransactionsModel} from "../../src/database/MongooseTransactionModel";
+// import {TransactionsModel} from "../../src/database/MongooseTransactionModel";
 
 describe("Transactions API - Integrations", () => {
 

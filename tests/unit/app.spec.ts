@@ -1,4 +1,3 @@
-// import { createTransactions } from '../../service/transactionService';
 import {transactions} from '../../src/data';
 
 
