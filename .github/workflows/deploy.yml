@@ -68,6 +68,8 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
+    env:
+      MONGO_URL_TESTE: ${{ secrets.MONGO_URL_TESTE}}
 
     steps:
       - name: Checkout
