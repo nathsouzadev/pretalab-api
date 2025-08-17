@@ -16,19 +16,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/genai": "^1.13.0",
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.0.10",
+    "@types/jest": "^30.0.0",
+    "@types/mongoose": "^5.11.96",
+    "@types/supertest": "^6.0.3",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
-    "@types/jest": "^30.0.0",
-    "@types/mongoose": "^5.11.96",
-    "@types/supertest": "^6.0.3",
     "cross-env": "^7.0.3",
     "jest": "^30.0.4",
     "mongoose": "^8.17.1",

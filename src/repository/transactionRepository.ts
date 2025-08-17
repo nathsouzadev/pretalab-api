@@ -8,7 +8,6 @@ export class TransactionRepository {
     };
 
     public async getById(id: string): Promise<ITransaction | null> {
-        
         return await TransactionsModel.findById(id);
     };
 

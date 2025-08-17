@@ -9,12 +9,10 @@ export class TransactionController {
     }
 
     public async CreateTransactionController(req: Request, res: Response): Promise<void> {
-
         const newTransaction = await this.transactionService.createTransactions(req.body);
     
         res.status(201).json({newTransaction});
     };
-
 
     public async GetTransactionByIdController(req: Request, res: Response): Promise<void> {
         const {id} = req.params;

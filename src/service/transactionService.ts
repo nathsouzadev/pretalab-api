@@ -1,4 +1,3 @@
-import { Request, Response } from "express";
 import {TransactionRepository} from "../repository/transactionRepository";
 import { ITransaction } from "../database/MongooseTransactionModel";
 
@@ -16,7 +15,6 @@ export class TransactionService {
     public async getTransactionsById(id: string): Promise<ITransaction | null > {
         return await this.transactionRepository.getById(id);
     };
-
 
 }
 
