@@ -1,7 +1,5 @@
-# Stage 1: Build the TypeScript application
 FROM node:20-slim AS build
 
-# Set the working directory inside the container
 WORKDIR /app
 
 # Copy package.json and package-lock.json (or yarn.lock) first to leverage Docker's cache

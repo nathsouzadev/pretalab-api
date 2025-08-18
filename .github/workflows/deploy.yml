@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  # Job para executar os testes unitários
+  # testes unitários
   unit-test:
     runs-on: ubuntu-latest
     steps:
@@ -24,7 +24,7 @@ jobs:
       - name: Run unit tests
         run: npm run test:unit
 
-  # Job para executar os testes de integração
+  # testes de integração
   integration-test:
     runs-on: ubuntu-latest
     steps:
@@ -42,7 +42,7 @@ jobs:
       - name: Run integration tests
         run: npm run test:integration
   
-  # Job de deploy (só roda se os dois testes passarem)
+  # deploy (só roda se os dois testes passarem)
   deploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
