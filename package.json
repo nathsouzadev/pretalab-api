@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build" : "tsc",
-    "start" : "node dist/index.js",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn src/index.ts",
     "test": "jest --config jest.config.js --runInBand",
-    "test:unit": "jest ./tests/unit --config jest.config.js --runInBand",
+    "test:unit": "jest ./tests/unit --config jest.config.js --runInBand --detectOpenHandles --forceExit",
     "test:integration": "jest ./tests/integration --config jest.config.js --runInBand --detectOpenHandles --forceExit",
     "test:coverage": "jest --coverage"
   },
@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/genai": "^1.13.0",
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
@@ -23,6 +24,7 @@
     "@types/node": "^24.0.10",
     "@types/supertest": "^6.0.3",
     "bcrypt": "^6.0.0",
+    "crypto": "^1.0.1",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2"
