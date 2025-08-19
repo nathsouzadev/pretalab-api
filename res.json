@@ -1,8 +1,37 @@
 {
-"usageMetadata": {
+    "sdkHttpResponse": {
+        "headers": {
+            "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+            "content-encoding": "gzip",
+            "content-type": "application/json; charset=UTF-8",
+            "date": "Wed, 13 Aug 2025 22:19:27 GMT",
+            "server": "scaffolding on HTTPServer2",
+            "server-timing": "gfet4t7; dur=7930",
+            "transfer-encoding": "chunked",
+            "vary": "Origin, X-Origin, Referer",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "x-xss-protection": "0"
+        }
+    },
+    "candidates": [
+        {
+            "content": {
+                "parts": [
+                    {
+                        "text": "O valor do dólar hoje pode variar dependendo da fonte que você consulta e do tipo de dólar que você está procurando (comercial, turismo, etc.).\n\nPara saber o valor exato e atualizado, recomendo consultar as seguintes fontes:\n\n*   **Google Finance:** Basta pesquisar \"dólar hoje\" no Google.\n*   **Sites de notícias financeiras:** Consulte sites como Valor Econômico, InfoMoney, Investing.com, etc.\n*   **Bancos e corretoras:** Consulte os sites ou aplicativos do seu banco ou corretora para ver a cotação do dólar.\n\nLembre-se que a cotação do dólar muda constantemente ao longo do dia."
+                    }
+                ],
+                "role": "model"
+            },
+            "finishReason": "STOP",
+            "avgLogprobs": -0.16508230955704398
+        }
+    ],
+    "usageMetadata": {
         "promptTokenCount": 7,
-        "candidatesTokenCount": 105,
-        "totalTokenCount": 112,
+        "candidatesTokenCount": 138,
+        "totalTokenCount": 145,
         "promptTokensDetails": [
             {
                 "modality": "TEXT",
@@ -12,10 +41,10 @@
         "candidatesTokensDetails": [
             {
                 "modality": "TEXT",
-                "tokenCount": 105
+                "tokenCount": 138
             }
         ]
     },
     "modelVersion": "gemini-2.0-flash",
-    "responseId": "BsKbaInnCvKcnvgPraXxwQ4"
+    "responseId": "wwqdaMCHK7DanvgPzufu-AU"
 }

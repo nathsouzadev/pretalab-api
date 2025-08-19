@@ -6,7 +6,7 @@ export class TransactionRepository {
     }
 
     public async getTransactionById(id: string): Promise<ITransaction | null> {
-        return await TransactionModel.findOne({ id: id });
+        return await TransactionModel.findById(id);
     }
 
     public async createTransaction(data: Omit<ITransaction, 'id'>): Promise<ITransaction> {
