@@ -80,7 +80,7 @@ jobs:
           region: ${{ secrets.SERVICE_REGION }}
           source: ./
           env_vars: 
-            MONGO_URL: ${{secrets.MONGO_URL}}
+            MONGO_URL = ${{secrets.MONGO_URL}}
 
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
