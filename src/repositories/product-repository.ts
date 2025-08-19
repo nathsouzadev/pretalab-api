@@ -1,16 +1,12 @@
-import { ProductModel, IProduct } from "../database/mongooseProductModel";
+import { products, IProducts } from "../database/productsBaseDefined";
 
 export class ProductRepository {
-    public async getAllProduct(): Promise<IProduct[]> {
-        return await ProductModel.find();
+    public async getAllProduct(): Promise<IProducts[]> {
+        return products;
     }
 
-    public async getProductById(id: string): Promise<IProduct | null> {
-        return await ProductModel.findById(id);
-    }
-
-    public async createProduct(data: Omit<IProduct, 'id'>): Promise<IProduct> {
-        const newProduct = new ProductModel(data);
-        return await newProduct.save();
+    public async getProductById(id: string): Promise<IProducts | null> {
+        const product = products.find(p => p.id === id);
+        return product || null;
     }
 }

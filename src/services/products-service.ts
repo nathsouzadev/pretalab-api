@@ -1,15 +1,14 @@
-import { IProduct } from "../database/mongooseProductModel";
-import { ProductRepository  } from "../repositories/product-repository";
+import { IProducts } from "../database/productsBaseDefined";
+import { ProductRepository } from "../repositories/product-repository";
 
 export class ProductService {
-  private productRepository: ProductRepository;
+    private productRepository: ProductRepository;
 
-  constructor(productRepository: ProductRepository) {
-    this.productRepository = productRepository;
-  }
+    constructor(productRepository: ProductRepository) {
+        this.productRepository = productRepository;
+    }
 
-  public async getAllProduct(): Promise<IProduct[]> {
-    return await this.productRepository.getAllProduct();
-  }
-
+    public async getAllProduct(): Promise<IProducts[]> {
+        return await this.productRepository.getAllProduct();
+    }
 }

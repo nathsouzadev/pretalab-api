@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { ProductController } from "../../src/controllers/products-controller"
 import { ProductService } from '../../src/services/products-service';
-import { IProduct } from '../../src/database/mongooseProductModel';
+import { IProducts } from '../../src/database/productsBaseDefined';
 
 describe("ProductController", () => {
 
@@ -25,10 +25,10 @@ describe("ProductController", () => {
             { name: 'Notebook', price: 15000 },
         ];
 
-        const createdProduct: IProduct = {
+        const createdProduct: IProducts = {
             ...mockProduct[0],
             _id: "21"
-        } as IProduct;
+        } as IProducts;
 
         (mockProductService.getAllProduct as jest.Mock).mockResolvedValue(mockProduct);
 
