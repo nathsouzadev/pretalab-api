@@ -1,7 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface ITransaction extends Document {
-  id?: string;
   date: string;
   description: string;
   amount: number;
