@@ -3,15 +3,13 @@ import {
   byId as byIdTransaction,
   all as allTransaction,
   create as createTransaction,
-  create,
-  all,
-  byId,
 } from "./controller/transaction";
 import {
   byId as byIdPurchase,
   all as allPurchase,
   create as createPurchase,
 } from "./controller/purchase";
+import { all as allProduct } from "./controller/product";
 import { aiResponse } from "./controller/ai";
 
 const app = express();
@@ -32,6 +30,8 @@ app.get("/purchases", (req, res) => allPurchase(req, res));
 app.get("/purchases/:id", (req, res) => byIdPurchase(req, res));
 
 app.post("/purchases", (req, res) => createPurchase(req, res));
+
+app.get("/products", (req, res) => allProduct(req, res));
 
 app.post("/ai", async (req, res) => aiResponse(req, res));
 
