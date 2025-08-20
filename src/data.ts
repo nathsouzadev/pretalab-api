@@ -138,6 +138,16 @@ export const purchases: Purchase[] = [
   },
 ];
 
+const adminId = "0c723232-21dd-420e-a936-65d64cfae71b";
+const playerId = "b5af1365-c61a-4fb6-ade1-39fb4929fe5e";
+const coachId = "2daf7239-c3f0-4e53-b757-765db32bb5fe";
+const productId = "2ce36daf-8b46-4ca3-a2bc-905fbac109ef";
+const serviceId = "a9307ae4-7419-4f06-a01d-f7615e52835a";
+const scheduledId = "4fc28577-4ab0-4ccb-9c2a-4829634d3125";
+const completedId = "f03d0f6a-be5f-404f-8302-cf7eb162be02";
+const cancelledId = "07c2a0b0-677f-4930-8aec-c5cf6cc7e3d8";
+const accountId = "451ffbe8-6b2b-4027-85a1-122f556be736";
+
 export const products: Product[] = [
   { id: 1, name: "Notebook Gamer Pro", price: 7500 },
   { id: 2, name: "Mouse Sem Fio Ultra-leve", price: 350 },
