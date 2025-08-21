@@ -1,14 +1,7 @@
-import { IProducts } from "../database/productsBaseDefined";
-import { ProductRepository } from "../repositories/product-repository";
+import axios from "axios";
+import type { apiResponse, TProducts } from "../models/products";
 
-export class ProductService {
-    private productRepository: ProductRepository;
-
-    constructor(productRepository: ProductRepository) {
-        this.productRepository = productRepository;
-    }
-
-    public async getAllProduct(): Promise<IProducts[]> {
-        return await this.productRepository.getAllProduct();
-    }
+export async function getAllProduct(): Promise<TProducts[]>{
+    const response = await axios.get<apiResponse>("https://pretalab-api-439254010866.us-central1.run.app/products");
+    return response.data.data
 }

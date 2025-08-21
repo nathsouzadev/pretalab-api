@@ -1,42 +1,21 @@
-import { Request, Response } from 'express';
-import { ProductController } from "../../src/controllers/products-controller"
-import { ProductService } from '../../src/services/products-service';
-import { IProducts } from '../../src/database/productsBaseDefined';
+import { getAllProduct } from "../../src/services/products-service";
+import nock from "nock";
 
-describe("ProductController", () => {
+describe("GET Products Service", () => {
+    const mockProducts = [
+        {
+            "id": "1",
+            "name": "Notebook Gamer Pro",
+            "price": 7500
+        }
+    ];
+    it("Returning all products", async () => {
+        nock("https://pretalab-api-439254010866.us-central1.run.app")
+            .get("/products")
+            .reply(200, {data: mockProducts})
 
-    const mockProductService: Partial<ProductService> = {
-        getAllProduct: jest.fn(),
-    }
+        const products = await getAllProduct();
 
-    const productController = new ProductController(mockProductService as ProductService)
-
-    const mockRequest: Partial<Request> = {};
-    const mockResponse: Partial<Response> = {
-        json: jest.fn(),
-        status: jest.fn(() => mockResponse as Response),
-    }
-
-    
-    it("testar o get de product, retornando uma lista", async () => {
-
-        const mockProduct = [
-            { name: 'Celular', price: 5000 },
-            { name: 'Notebook', price: 15000 },
-        ];
-
-        const createdProduct: IProducts = {
-            ...mockProduct[0],
-            _id: "21"
-        } as IProducts;
-
-        (mockProductService.getAllProduct as jest.Mock).mockResolvedValue(mockProduct);
-
-
-        await productController.getAllProduct(mockRequest as Request, mockResponse as Response);
-
-        expect(mockProductService.getAllProduct).toHaveBeenCalledTimes(1);
-        expect(mockResponse.json).toHaveBeenCalledWith(mockProduct);
-
-    });
-});
+        expect(products).toEqual(mockProducts)
+    })
+})
