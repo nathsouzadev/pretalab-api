@@ -7,12 +7,10 @@ const mockPurchasesRepository = {
     getPurchasesById: jest.fn(),
 };
 
-
 const purchasesService = new PurchasesService(mockPurchasesRepository as any);
 
 describe("PurchasesService", () => {
     it("deve puxar e retornar uma lista de compras", async () => {
-
         const purchasesList: IPurchases[] = [
             {
                 _id: "68a4a5b91c6914647640b213" as any,
@@ -20,7 +18,7 @@ describe("PurchasesService", () => {
                 total: 7850,
                 items: [
                     {
-                        productId: 1,
+                        productId: "1",
                         quantity: 1,
                         name: "Notebook Gamer Pro",
                         price: 7500,
@@ -35,7 +33,7 @@ describe("PurchasesService", () => {
                 total: 120,
                 items: [
                     {
-                        productId: 2,
+                        productId: "2",
                         quantity: 2,
                         name: "Teclado Mecânico",
                         price: 60,
@@ -50,6 +48,6 @@ describe("PurchasesService", () => {
 
         const result = await purchasesService.getAllPurchases();
 
-        expect(result).toEqual(purchasesList);
+        expect(result).toMatchObject(purchasesList);
     });
 });

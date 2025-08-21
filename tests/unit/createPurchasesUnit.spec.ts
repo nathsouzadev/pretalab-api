@@ -8,7 +8,7 @@ describe("PurchasesService", () => {
             "total": 7850,
             "items": [
                 {
-                    "productId": 1,
+                    "productId": "1",
                     "quantity": 1,
                     "name": "Notebook Gamer Pro",
                     "price": 7500
