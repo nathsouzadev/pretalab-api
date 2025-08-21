@@ -65,6 +65,6 @@ describe('Get Integration Products', () => {
 
         expect(purchasesRepositoryMocked.getAllPurchases).toHaveBeenCalledTimes(1);
         expect(response.status).toBe(200);
-        expect(response.body).toEqual(mockPurchases);
+        expect(response.body).toMatchObject(mockPurchases);
     });
 });

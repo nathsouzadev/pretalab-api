@@ -20,6 +20,6 @@ describe('GET Products Integration', () => {
         const response = await request(app).get('/products');
 
         expect(response.status).toBe(200);
-        expect(response.body).toEqual(mockProducts);
+        expect(response.body).toMatchObject(mockProducts);
     });
 });

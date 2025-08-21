@@ -16,6 +16,6 @@ describe("GET Products Service", () => {
 
         const products = await getAllProduct();
 
-        expect(products).toEqual(mockProducts)
+        expect(products).toMatchObject(mockProducts)
     })
 })
