@@ -28,6 +28,16 @@ jobs:
         run: npm install
       - name: Run unit tests
         run: npm run test:unit
+
+      # - name: Create connection to MongoDB
+      #   run: docker network create "microservice-network"
+
+      # - name: Set up MongoDB
+      #   run: docker-compose up -d
+
+      # - name: Check mongod
+      #   run: docker ps
+
       - name: Run integration tests
         run: npm run test:integration
 
