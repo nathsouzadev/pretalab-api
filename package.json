@@ -10,7 +10,8 @@
     "test": "cross-env NODE_ENV=test jest --config jest.config.js --runInBand --detectOpenHandles",
     "test:unit": "jest ./tests/unit --config jest.config.js --runInBand --detectOpenHandles",
     "test:integration": "jest ./tests/integration --config jest.config.js --runInBand --detectOpenHandles --forceExit",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "start:docker": "docker-compose up -d"
   },
   "keywords": [],
   "author": "",
