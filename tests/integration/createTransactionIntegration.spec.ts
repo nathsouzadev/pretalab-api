@@ -1,7 +1,21 @@
 import request from "supertest";
 import app from "../../src/index";
+import mongoose from "mongoose";
+import { TransactionModel } from '../../src/database/mongooseTransactionModel';
+
 
 describe("Create Transactions API", () => {
+        beforeAll(async () => {
+        await mongoose.connect(process.env.MONGO_URL!);
+    });
+
+    afterEach(async () => {
+        await TransactionModel.deleteMany({});
+    });
+
+    afterAll(async () => {
+        await mongoose.connection.close();
+    });
     it("should create a new transaction and return it with a 201 status code", async () => {
         const newTransaction = {
             date: "2024-08-07T10:00:00Z",

@@ -9,13 +9,13 @@ export interface IPurchaseItem {
 
 export interface IPurchases extends Document {
   id?: string;
-  date: string;
+  date: Date;
   total: number;
   items: IPurchaseItem[];
 }
 
 const PurchasesSchema: Schema = new Schema({
-  date: { type: String, required: true, default: Date.now },
+  date: { type: Date, required: true, default: Date.now },
   total: { type: Number, required: true },
   items: [{
     productId: { type: String, required: true },
