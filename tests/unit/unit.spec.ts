@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../../src/server";
+import app from "../../src/index";
 
 describe("Rota inicial", () => {
   it("Retornar a mensagem correta", async () => {

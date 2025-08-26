@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../../src/server";
+import app from "../../src/index";
 
 describe("Create Checkout API", () => {
     it("should create a new checkout and return it with a 201 status code", async () => {
