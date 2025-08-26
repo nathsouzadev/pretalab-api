@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../../src/index';
+import app from '../../src/server';
 import { PurchasesRepository } from '../../src/repositories/purchases-repository';
 
 jest.mock('../../src/repositories/purchases-repository', () => {

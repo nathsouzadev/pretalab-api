@@ -1,6 +1,6 @@
 import request from 'supertest';
 import nock from 'nock';
-import app from '../../src/index';
+import app from '../../src/server';
 
 describe('GET Products Integration', () => {
     afterEach(() => {
