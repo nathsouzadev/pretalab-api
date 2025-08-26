@@ -1,7 +1,10 @@
 import { geminiInternal } from "../adapters/gemini";
-import { chat, generateText } from "./gemini";
+import { chat, financialAssistant, generateText } from "./gemini";
+import { transactions } from "./transactions";
 
 const chatContext: any[] = [];
+
+const transactionsContext = () => transactions();
 
 const chatItem = (role: string, text: string) => {
   const data = {
@@ -16,9 +19,10 @@ const chatItem = (role: string, text: string) => {
 };
 
 export const chatAiInteration = async (prompt: string) => {
+  const transactionsData = transactionsContext();
   chatItem("user", prompt);
 
-  const data = await chat(chatContext);
+  const data = await financialAssistant(chatContext, transactionsData);
   const { response } = geminiInternal(data);
   chatItem("model", response);
 
