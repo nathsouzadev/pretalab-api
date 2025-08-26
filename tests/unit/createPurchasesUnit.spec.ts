@@ -4,7 +4,6 @@ import { IPurchases } from "../../src/database/mongoosePurchasesModel";
 describe("PurchasesService", () => {
     it("deve criar e retornar uma nova compra", async () => {
         const newPurchasesData = {
-            "date": "2024-07-28T14:45:12Z",
             "total": 7850,
             "items": [
                 {
@@ -17,8 +16,7 @@ describe("PurchasesService", () => {
         };
 
         const createdPurchases: IPurchases = {
-            ...newPurchasesData,
-            _id: "21"
+            ...newPurchasesData
         } as IPurchases;
 
         const mockPurchasesRepository = {
