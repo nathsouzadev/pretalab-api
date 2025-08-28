@@ -55,6 +55,7 @@ jobs:
       - name: npm test integration
         env:
           MONGO_URL: mongodb://admin:password@localhost:27017
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: npm run test:integration
 
   deploy:
