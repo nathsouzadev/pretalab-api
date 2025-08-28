@@ -1,5 +1,6 @@
 import { geminiInteral } from "../adapters/gemini";
-import { chat, generateText } from "./gemini";
+import { chat, financialAssistant,generateText } from "./gemini";
+import { HistoricoModel } from "../database/mongooseGeminiModel";
 
 const chatContext: any[] = [];
 
@@ -12,8 +13,7 @@ const chatItem = (role: string, text: string) => {
             },
         ],
     };
-
-    return data;
+    chatContext.push(data)
 }
 
 export const ai = async (prompt: string) => {
@@ -23,16 +23,34 @@ export const ai = async (prompt: string) => {
     return response;
 }
 
-export const aiChat = async (prompt: string) => {
-    const input = chatItem("user", prompt);
+export const aiChatInteration = async (prompt: string) => {
+    chatItem("user", prompt);
 
-    const data = await chat(chatContext);
-    const { response } = geminiInteral(data);
+    const data = await financialAssistant(chatContext);
+    const responseText = geminiInteral(data).response;
 
-    const output = chatItem("model", response);
+        const userMessage = {
+        role: "user",
+        text: prompt,
+        timestamp: new Date()
+    };
+
+    const modelMessage = {
+        role: "model",
+        text: responseText,
+        timestamp: new Date()
+    };
+
+    await HistoricoModel.updateOne(
+        {},
+        { $push: { interactions: { $each: [userMessage, modelMessage] } } },
+        { upsert: true }
+    )
+
+    chatItem("model", responseText);
 
     return {
-        response,
+        responseText,
         context: chatContext
     }
 

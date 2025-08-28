@@ -1,5 +1,5 @@
 import {Response, Request} from "express";
-import { ai, aiChat } from "../services/prompt"
+import { ai, aiChatInteration } from "../services/prompt"
 
  export const aiResponse = async (req: Request, res: Response) => {
   const { prompt } = req.body;
@@ -13,7 +13,7 @@ import { ai, aiChat } from "../services/prompt"
  export const aiChatResponse = async (req: Request, res: Response) => {
   const { prompt } = req.body;
 
-  const response = await aiChat(prompt);
+  const response = await aiChatInteration(prompt);
   
   res.json(response)
 

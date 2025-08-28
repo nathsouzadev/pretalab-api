@@ -1,6 +1,7 @@
 import { IPurchases } from "../database/mongoosePurchasesModel";
 import { PurchasesRepository } from "../repositories/purchases-repository";
 
+
 export class PurchasesService {
   private purchasesRepository: PurchasesRepository;
 
